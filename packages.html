@@ -37,25 +37,26 @@
         <div class="split">
           <div>
             <p class="eyebrow">Install</p>
-            <h2>Download the installer from the website.</h2>
+            <h2>Choose the script installer or Windows setup app.</h2>
             <p>
               The Vercel site serves a bootstrap installer, the NovaDev language zip, a registry JSON file, and package
               zip files. The installer downloads the language, configures the registry, and can install every bundled
-              package in one command.
+              package in one command. Windows users can also use `NovaDevSetup.exe` after it is built with Inno Setup.
             </p>
             <div class="button-row">
               <a class="button primary" href="downloads/install-novadev.py" download>Download Installer</a>
+              <a class="button secondary" href="#windows-installer">Windows Setup Guide</a>
               <a class="button secondary" href="#commands">View Commands</a>
             </div>
           </div>
           <div class="code-block">
             <div class="code-title">install commands</div>
             <pre><code class="language-bash">python install-novadev.py \
-  --zip-url https://your-site.vercel.app/downloads/novadev.zip \
+  --zip-url https://novadev-org.vercel.app/downloads/novadev.zip \
   --install-all-packages
 
 # The installer infers:
-# https://your-site.vercel.app/downloads/registry.json
+# https://novadev-org.vercel.app/downloads/registry.json
 
 nova shell
 nova run examples/hello.nova
@@ -74,7 +75,7 @@ novapm doctor</code></pre>
           <button class="command-copy" data-copy="python novapm.py doctor">doctor</button>
           <button class="command-copy" data-copy="python novapm.py install-language --source .">install-language</button>
           <button class="command-copy" data-copy="python novapm.py init-registry">init-registry</button>
-          <button class="command-copy" data-copy="python install-novadev.py --zip-url https://your-site.vercel.app/downloads/novadev.zip --install-all-packages">website install</button>
+          <button class="command-copy" data-copy="python install-novadev.py --zip-url https://novadev-org.vercel.app/downloads/novadev.zip --install-all-packages">website install</button>
           <button class="command-copy" data-copy="python novapm.py search ui">search</button>
           <button class="command-copy" data-copy="python novapm.py install packages/hello-ui">install package</button>
           <button class="command-copy" data-copy="python novapm.py list">list packages</button>
@@ -90,6 +91,7 @@ novapm doctor</code></pre>
             <div class="code-title">Vercel download layout</div>
             <pre><code>downloads/
   install-novadev.py
+  NovaDevSetup.exe
   novadev.zip
   registry.json
   checksums.json
@@ -139,6 +141,29 @@ novapm doctor</code></pre>
           <article class="feature-card"><span class="icon">1</span><strong>Host the site</strong><p>Deploy the static <code>nova website</code> folder to Vercel so users can download the installer and zips.</p></article>
           <article class="feature-card"><span class="icon">2</span><strong>Install from zip</strong><p>The installer downloads <code>downloads/novadev.zip</code> and copies NovaDev into <code>~/.novadev/language</code>.</p></article>
           <article class="feature-card"><span class="icon">3</span><strong>Use registry JSON</strong><p>The installer points <code>novapm</code> at <code>downloads/registry.json</code>, which points to package zip files.</p></article>
+        </div>
+      </section>
+
+      <section class="section" id="windows-installer">
+        <div class="section-heading">
+          <p class="eyebrow">Windows Installer</p>
+          <h2>NovaDevSetup.exe makes NovaDev visible in Windows.</h2>
+          <p>
+            The Windows installer places NovaDev in <code>%LOCALAPPDATA%\NovaDev</code>, adds the <code>bin</code>
+            folder to the user's PATH, creates Start Menu shortcuts, bundles <code>novapm</code>, and opens NovaDev Manager.
+          </p>
+        </div>
+        <div class="grid three">
+          <article class="feature-card"><strong>nova</strong><p>Runs NovaDev files and project compiler commands from any new terminal.</p></article>
+          <article class="feature-card"><strong>novapm</strong><p>Installs, removes, searches, and lists NovaDev packages from the hosted registry.</p></article>
+          <article class="feature-card"><strong>NovaDev Manager</strong><p>A Tkinter GUI for install/update, package management, shell launch, and doctor checks.</p></article>
+        </div>
+        <div class="code-block" style="margin-top: 1rem;">
+          <div class="code-title">build NovaDevSetup.exe</div>
+          <pre><code class="language-powershell">.\installer\windows\build-installer.ps1
+
+# Output:
+# nova website/downloads/NovaDevSetup.exe</code></pre>
         </div>
       </section>
     </main>

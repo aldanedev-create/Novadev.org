@@ -19,6 +19,7 @@ nova website/
     novadev-hero.png
   downloads/
     install-novadev.py
+    NovaDevSetup.exe
     novadev.zip
     registry.json
     checksums.json
@@ -62,7 +63,19 @@ Create a Vercel project and use this folder as the project root. No build comman
 After deployment, users can install NovaDev from the website with:
 
 ```bash
-python install-novadev.py --zip-url https://your-site.vercel.app/downloads/novadev.zip --install-all-packages
+python install-novadev.py --zip-url https://novadev-org.vercel.app/downloads/novadev.zip --install-all-packages
 ```
 
 That command installs the language, configures `novapm` to use `downloads/registry.json`, and installs the bundled packages listed in the registry.
+
+For the Windows setup app, build this first:
+
+```powershell
+.\installer\windows\build-installer.ps1
+```
+
+Then redeploy this website folder so users can download:
+
+```txt
+https://novadev-org.vercel.app/downloads/NovaDevSetup.exe
+```

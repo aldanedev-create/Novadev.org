@@ -1,6 +1,7 @@
 {
-  "novadev.zip": "2c71266812ef868880c2d6144653e25e4f04b06b2a48a3beb2f270381c147439",
+  "novadev.zip": "9271b0c9fdf09acfeff97387475b13d8e53e347cc3b9a52fedf39dc1da97e4ed",
   "packages/hello-ui.zip": "75007005bc4be1580a79c184b44814995b3a98b7d827f547dfe9e100bbd3366c",
   "packages/auth-kit.zip": "9a14a1363ee86f3fd074dc892aa4d0c9427d185d2e2384b4a462e3fec6a6dbfc",
-  "packages/dashboard-kit.zip": "97516abbdf2357991288c01ea6de8af0fde98fb77b244a882c25a16a1bb714f4"
+  "packages/dashboard-kit.zip": "97516abbdf2357991288c01ea6de8af0fde98fb77b244a882c25a16a1bb714f4",
+  "NovaDevSetup.exe": "24538a307bc7b65881fda705ec4312848b1e8f064e71bdc14c9035e3fef6f583"
 }
