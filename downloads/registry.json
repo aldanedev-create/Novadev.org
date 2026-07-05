@@ -1,0 +1,31 @@
+{
+  "name": "novadev-official-registry",
+  "version": "1.0.0",
+  "description": "Website-hosted NovaDev package registry for Vercel static downloads.",
+  "packages": [
+    {
+      "name": "hello-ui",
+      "version": "0.1.0",
+      "description": "Example NovaDev UI helpers and starter page declarations.",
+      "source": "packages/hello-ui.zip",
+      "kind": "module",
+      "sha256": "75007005bc4be1580a79c184b44814995b3a98b7d827f547dfe9e100bbd3366c"
+    },
+    {
+      "name": "auth-kit",
+      "version": "0.1.0",
+      "description": "Starter auth declarations for NovaDev apps.",
+      "source": "packages/auth-kit.zip",
+      "kind": "module",
+      "sha256": "9a14a1363ee86f3fd074dc892aa4d0c9427d185d2e2384b4a462e3fec6a6dbfc"
+    },
+    {
+      "name": "dashboard-kit",
+      "version": "0.1.0",
+      "description": "Reusable dashboard page declarations and UI helpers.",
+      "source": "packages/dashboard-kit.zip",
+      "kind": "module",
+      "sha256": "97516abbdf2357991288c01ea6de8af0fde98fb77b244a882c25a16a1bb714f4"
+    }
+  ]
+}

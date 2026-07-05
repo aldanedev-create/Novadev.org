@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NovaDev Project Compiler</title>
+    <meta name="description" content="Learn NovaDev ProjectIR, modes, custom mode, Vue generation, Tailwind styling, Flask backends, workflows, routes, and custom modules." />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/themes/light.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html"><span class="brand-mark">N</span><span>NovaDev</span></a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="learn.html">Learn</a>
+        <a href="projects.html">Projects</a>
+        <a href="packages.html">Packages</a>
+        <a href="examples.html">Examples</a>
+        <a href="reference.html">Reference</a>
+      </nav>
+      <a class="nav-cta" href="packages.html#install">Install</a>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <p class="eyebrow">Project Compiler</p>
+        <h1>Build apps from declared structure.</h1>
+        <p>
+          NovaDev can compile high-level app declarations into ProjectIR, then generate project-specific Vue, Tailwind,
+          Flask, routes, models, workflow hooks, custom modules, and documentation.
+        </p>
+      </section>
+
+      <section class="section">
+        <div class="split">
+          <div>
+            <p class="eyebrow">ProjectIR</p>
+            <h2>The middle layer that makes generation specific.</h2>
+            <p>
+              ProjectIR stores what the developer declared: app name, mode, pages, tables, routes, workflows, modules,
+              custom code, architecture, styling, database, backend target, and frontend target. Generators read ProjectIR
+              instead of copying the same template into every project.
+            </p>
+            <div class="callout">
+              <p>
+                <strong>Important:</strong> <code>mode custom</code> means NovaDev does not assume ecommerce, school, CRM,
+                construction, or any other domain. It generates from only what the developer declares.
+              </p>
+            </div>
+          </div>
+          <div class="code-block">
+            <div class="code-title">project.nova</div>
+            <pre><code class="language-javascript">app StoreFront {
+    project {
+        frontend Vue
+        backend Flask
+        database SQLite
+        structure VueFlask
+        styling Tailwind
+        mode ecommerce
+    }
+
+    table Product {
+        id auto
+        name text
+        price money
+        stock int
+    }
+
+    page Home {
+        type catalog
+        section Products from Product
+    }
+}</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="section alt" id="modes">
+        <div class="section-heading">
+          <p class="eyebrow">Modes</p>
+          <h2>Common categories get helpful defaults. Custom mode gets full control.</h2>
+          <p>
+            Modes help NovaDev choose better page structure, data displays, workflows, naming, and Tailwind styling profiles.
+            They are not hardcoded clone pages; they should respond to the app's declarations.
+          </p>
+        </div>
+        <ul class="mode-list">
+          <li>custom</li><li>ecommerce</li><li>construction</li><li>crm</li><li>school</li><li>portfolio</li>
+          <li>restaurant</li><li>booking</li><li>dashboard</li><li>blog</li><li>cms</li><li>church</li>
+          <li>gym</li><li>inventory</li><li>delivery</li><li>realestate</li><li>healthcare</li><li>finance</li>
+          <li>trading</li><li>security</li><li>nonprofit</li><li>event</li><li>hotel</li><li>salon</li>
+          <li>learning</li><li>marketplace</li><li>social</li><li>forum</li><li>projectmanagement</li>
+          <li>invoice</li><li>pos</li><li>supportdesk</li><li>logistics</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Project Features</p>
+          <h2>What the compiler can generate from Nova code.</h2>
+        </div>
+        <div class="grid three">
+          <article class="feature-card"><strong>Tables and models</strong><p>Declare entities, fields, types, IDs, and relationships for backend model generation.</p></article>
+          <article class="feature-card"><strong>Pages and components</strong><p>Generate dashboard, catalog, form, table, landing, marketing, admin, and custom page layouts.</p></article>
+          <article class="feature-card"><strong>Routes and APIs</strong><p>Create Flask route files from declared HTTP routes and workflow endpoints.</p></article>
+          <article class="feature-card"><strong>Auth and roles</strong><p>Declare auth models, role requirements, and protected pages or routes.</p></article>
+          <article class="feature-card"><strong>Workflows</strong><p>Describe actions like checkout, lead capture, prayer submission, booking, attendance, or scanning.</p></article>
+          <article class="feature-card"><strong>Custom modules</strong><p>Wrap Python code in Nova modules so generated backends can call project-specific logic.</p></article>
+          <article class="feature-card"><strong>Architecture files</strong><p>Declare folders and files like Dockerfile, utility modules, docs, and app-specific structure.</p></article>
+          <article class="feature-card"><strong>Tailwind styling</strong><p>Generate UI with mode-aware design profiles instead of the same shared CSS everywhere.</p></article>
+          <article class="feature-card"><strong>Vue + Flask output</strong><p>Generate frontend services, views, routes, backend models, API routes, and starter app files.</p></article>
+        </div>
+      </section>
+
+      <section class="section tint">
+        <div class="split reverse">
+          <div class="code-block">
+            <div class="code-title">custom-mode.nova</div>
+            <pre><code class="language-javascript">app ChurchMediaSystem {
+    project {
+        frontend Vue
+        backend Flask
+        styling Tailwind
+        mode custom
+    }
+
+    table Sermon {
+        id auto
+        title text
+        speaker text
+        videoUrl text
+        date date
+    }
+
+    workflow SubmitPrayer {
+        input PrayerRequest
+        creates PrayerRequest
+        notify Admin
+    }
+
+    page Home {
+        type landing
+        section Sermons from Sermon
+        form PrayerRequest
+    }
+}</code></pre>
+          </div>
+          <div>
+            <p class="eyebrow">Custom Mode</p>
+            <h2>Use NovaDev for projects that do not fit a common category.</h2>
+            <p>
+              A church media system, trading journal, gym billing app, refund tracker, scanner, portfolio CMS, or dispatch
+              tool should not receive ecommerce defaults. With <code>mode custom</code>, the developer controls the shape.
+            </p>
+            <a class="button primary" href="examples.html#custom">See Custom Examples</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div><h4>NovaDev</h4><p>Project-specific generation from real declarations, not one repeated template.</p></div>
+      <div class="footer-links"><h4>Learn</h4><a href="learn.html">Language</a><a href="projects.html">Projects</a><a href="examples.html">Examples</a></div>
+      <div class="footer-links"><h4>Tools</h4><a href="packages.html">Package Manager</a><a href="reference.html#cli">CLI</a><a href="reference.html#shell">Shell</a></div>
+      <div class="footer-links"><h4>Build</h4><a href="packages.html#install">Install</a><a href="reference.html#file-structure">File Structure</a><a href="reference.html">Reference</a></div>
+    </footer>
+
+    <script type="module" async src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/shoelace-autoloader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/common.min.js"></script>
+    <script src="assets/js/site.js"></script>
+  </body>
+</html>

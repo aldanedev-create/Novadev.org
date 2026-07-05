@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NovaDev Language</title>
+    <meta
+      name="description"
+      content="NovaDev is a Python-powered programming language and project compiler for building scripts, packages, Vue frontends, Tailwind UIs, and Flask backends."
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/themes/light.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="brand" href="index.html" aria-label="NovaDev home">
+          <span class="brand-mark">N</span>
+          <span>NovaDev</span>
+        </a>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="learn.html">Learn</a>
+          <a href="projects.html">Projects</a>
+          <a href="packages.html">Packages</a>
+          <a href="examples.html">Examples</a>
+          <a href="reference.html">Reference</a>
+        </nav>
+        <a class="nav-cta" href="packages.html#install">Install</a>
+      </header>
+
+      <main>
+        <section class="hero">
+          <canvas id="nova-scene" class="nova-scene" aria-label="Animated NovaDev compiler pipeline scene"></canvas>
+          <div class="hero-content">
+            <div class="hero-copy">
+              <p class="eyebrow">Python-powered language and project compiler</p>
+              <h1>NovaDev</h1>
+              <p>
+                Write normal programming code, then move up to high-level app declarations that generate real project files.
+                NovaDev teaches the language pipeline and gives developers a practical path from scripts to full-stack apps.
+              </p>
+              <div class="hero-actions">
+                <a class="button primary" href="learn.html">Start Learning</a>
+                <a class="button secondary" href="packages.html#install">Download Installer</a>
+              </div>
+              <div class="library-strip" aria-label="Website libraries">
+                <span>Three.js scene</span>
+                <span>Shoelace UI</span>
+                <span>Highlight.js code</span>
+                <span>Vercel static</span>
+              </div>
+            </div>
+
+            <div class="hero-panel">
+              <img src="assets/novadev-hero.png" alt="NovaDev developer workspace illustration" />
+              <div class="hero-terminal" aria-label="NovaDev quick start commands">
+                <div class="terminal-bar"><span></span><span></span><span></span></div>
+                <pre><code>python install-novadev.py \
+  --zip-url https://your-site.vercel.app/downloads/novadev.zip \
+  --install-all-packages
+
+nova shell
+
+nova&gt; let name = "Aldane"
+nova&gt; print("Hello {name}")
+Hello Aldane</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="offers">
+          <div class="section-heading center">
+            <p class="eyebrow">What NovaDev Offers</p>
+            <h2>One language for learning, scripting, and project generation.</h2>
+            <p>
+              NovaDev is organized like a real language: lexer, parser, AST, runtime, module system, shell, package manager,
+              and a ProjectIR compiler layer for generating application code.
+            </p>
+          </div>
+          <div class="grid four">
+            <article class="feature-card">
+              <span class="icon">01</span>
+              <strong>General-purpose code</strong>
+              <p>Variables, strings, numbers, booleans, nil, lists, objects, loops, functions, classes, and error handling.</p>
+            </article>
+            <article class="feature-card">
+              <span class="icon">02</span>
+              <strong>Interactive shell</strong>
+              <p>Run programming code, load files, inspect tokens and AST, build projects, and test ideas from one prompt.</p>
+            </article>
+            <article class="feature-card">
+              <span class="icon">03</span>
+              <strong>Full-stack compiler</strong>
+              <p>Declare apps, tables, pages, routes, auth, themes, workflows, architecture, Vue, Tailwind, and Flask.</p>
+            </article>
+            <article class="feature-card">
+              <span class="icon">04</span>
+              <strong>Local packages</strong>
+              <p>Use <code>novapm</code> to install the language, manage packages, pack modules, and point to registry JSON.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section alt">
+          <div class="split">
+            <div>
+              <p class="eyebrow">Compiler Pipeline</p>
+              <h2>Source code becomes running software.</h2>
+              <p>
+                The NovaDev pipeline starts with source text. The lexer turns text into tokens, the parser turns tokens into
+                AST nodes, the runtime executes program logic, and the project compiler converts app declarations into
+                ProjectIR before writing frontend and backend files.
+              </p>
+              <div class="button-row">
+                <a class="button primary" href="reference.html#pipeline">See Pipeline</a>
+                <a class="button secondary" href="projects.html">Project Compiler</a>
+              </div>
+            </div>
+            <div class="timeline" aria-label="NovaDev compiler pipeline">
+              <article><span>1</span><div><h3>Source</h3><p>A developer writes <code>.nova</code> files with code, modules, and app declarations.</p></div></article>
+              <article><span>2</span><div><h3>Tokens</h3><p>The lexer recognizes identifiers, strings, numbers, keywords, punctuation, and operators.</p></div></article>
+              <article><span>3</span><div><h3>AST</h3><p>The parser builds statements and expressions such as functions, loops, tables, pages, and routes.</p></div></article>
+              <article><span>4</span><div><h3>Runtime + ProjectIR</h3><p>The interpreter executes code, while ProjectIR stores app structure for code generation.</p></div></article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-heading">
+            <p class="eyebrow">Learning Paths</p>
+            <h2>Learn it like Python: basics first, then projects.</h2>
+          </div>
+          <div class="grid three">
+            <a class="path-card" href="learn.html">
+              <strong>Language basics</strong>
+              <p>Start with values, variables, control flow, functions, classes, modules, and shell usage.</p>
+            </a>
+            <a class="path-card" href="projects.html">
+              <strong>Build applications</strong>
+              <p>Learn app modes, custom mode, ProjectIR, workflows, UI generation, and Flask backends.</p>
+            </a>
+            <a class="path-card" href="examples.html">
+              <strong>Study examples</strong>
+              <p>Explore ecommerce, construction, security, school, CRM, custom church, gym, and general-purpose examples.</p>
+            </a>
+          </div>
+        </section>
+
+        <section class="section tint">
+          <div class="split reverse">
+            <div class="file-tree">
+              <div class="code-title">Website File Structure</div>
+              <pre><code>nova website/
+  index.html
+  learn.html
+  projects.html
+  packages.html
+  examples.html
+  reference.html
+  assets/
+    css/styles.css
+    js/site.js
+    js/novadev-scene.js
+    novadev-hero.png
+  downloads/
+    install-novadev.py
+    novadev.zip
+    registry.json
+    checksums.json
+    packages/
+      hello-ui.zip
+      auth-kit.zip
+      dashboard-kit.zip
+  vercel.json
+  README.md</code></pre>
+            </div>
+            <div>
+              <p class="eyebrow">Vercel Ready</p>
+              <h2>Static files, no build step required.</h2>
+              <p>
+                This site is designed for a frontend-first Vercel deployment. It uses plain HTML pages with shared assets,
+                CDN UI libraries, a downloadable installer script, and clean static routes.
+              </p>
+              <a class="button primary" href="reference.html#file-structure">Open Structure Guide</a>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div>
+          <h4>NovaDev</h4>
+          <p>A Python-powered programming language and project compiler for learning and building custom apps.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Learn</h4>
+          <a href="learn.html">Language</a>
+          <a href="projects.html">Projects</a>
+          <a href="examples.html">Examples</a>
+        </div>
+        <div class="footer-links">
+          <h4>Tools</h4>
+          <a href="packages.html">Package Manager</a>
+          <a href="reference.html#cli">CLI</a>
+          <a href="reference.html#shell">Shell</a>
+        </div>
+        <div class="footer-links">
+          <h4>Build</h4>
+          <a href="packages.html#install">Install</a>
+          <a href="reference.html#file-structure">File Structure</a>
+          <a href="projects.html#modes">Modes</a>
+        </div>
+      </footer>
+    </div>
+
+    <script type="module" async src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/shoelace-autoloader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/common.min.js"></script>
+    <script src="assets/js/site.js"></script>
+    <script type="module" async src="assets/js/novadev-scene.js"></script>
+  </body>
+</html>

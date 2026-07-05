@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learn NovaDev</title>
+    <meta name="description" content="Learn NovaDev syntax, shell usage, variables, control flow, functions, classes, modules, and Python bridge features." />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/themes/light.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html"><span class="brand-mark">N</span><span>NovaDev</span></a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="learn.html">Learn</a>
+        <a href="projects.html">Projects</a>
+        <a href="packages.html">Packages</a>
+        <a href="examples.html">Examples</a>
+        <a href="reference.html">Reference</a>
+      </nav>
+      <a class="nav-cta" href="packages.html#install">Install</a>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <p class="eyebrow">Language Guide</p>
+        <h1>Learn NovaDev</h1>
+        <p>
+          NovaDev can be used like a normal programming language before you use it as a project compiler.
+          Start in the shell, learn the syntax, then use the same language features to build and generate larger applications.
+        </p>
+        <div class="button-row">
+          <a class="button primary" href="#syntax">Core Syntax</a>
+          <a class="button secondary" href="#shell">Interactive Shell</a>
+        </div>
+      </section>
+
+      <section class="section" id="syntax">
+        <div class="section-heading">
+          <p class="eyebrow">Core Syntax</p>
+          <h2>Write code that feels direct and readable.</h2>
+          <p>
+            NovaDev supports common programming ideas: data, expressions, conditions, loops, functions, classes, modules,
+            imports, string interpolation, and safe bridges to Python helper modules.
+          </p>
+        </div>
+
+        <sl-tab-group>
+          <sl-tab slot="nav" panel="values">Values</sl-tab>
+          <sl-tab slot="nav" panel="control">Control Flow</sl-tab>
+          <sl-tab slot="nav" panel="functions">Functions</sl-tab>
+          <sl-tab slot="nav" panel="classes">Classes</sl-tab>
+          <sl-tab slot="nav" panel="modules">Modules</sl-tab>
+
+          <sl-tab-panel name="values">
+            <div class="split">
+              <div>
+                <h3>Variables and data</h3>
+                <p>
+                  Use <code>let</code> for variables. NovaDev supports strings, numbers, booleans, nil values, lists,
+                  objects, tuples, and expressions with operators.
+                </p>
+                <ul class="pill-list">
+                  <li>strings</li>
+                  <li>numbers</li>
+                  <li>booleans</li>
+                  <li>nil</li>
+                  <li>lists</li>
+                  <li>objects</li>
+                  <li>tuples</li>
+                </ul>
+              </div>
+              <div class="code-block">
+                <div class="code-title">values.nova</div>
+                <pre><code class="language-javascript">let name = "Aldane"
+let age = 20
+let active = true
+let skills = ["NovaDev", "Python", "Vue"]
+let profile = { name: name, role: "Developer" }
+
+print("Hello {name}")
+print(skills[0])</code></pre>
+              </div>
+            </div>
+          </sl-tab-panel>
+
+          <sl-tab-panel name="control">
+            <div class="split">
+              <div>
+                <h3>Conditions and loops</h3>
+                <p>
+                  NovaDev supports <code>if</code>, <code>elif</code>, <code>else</code>, <code>while</code>,
+                  <code>for</code>, <code>break</code>, <code>continue</code>, <code>try</code>, and <code>catch</code>.
+                </p>
+              </div>
+              <div class="code-block">
+                <div class="code-title">control-flow.nova</div>
+                <pre><code class="language-javascript">let total = 0
+
+for price in [12, 18, 7] {
+    total = total + price
+}
+
+if total > 30 {
+    print("Large cart")
+} elif total == 30 {
+    print("Exact cart")
+} else {
+    print("Small cart")
+}</code></pre>
+              </div>
+            </div>
+          </sl-tab-panel>
+
+          <sl-tab-panel name="functions">
+            <div class="split">
+              <div>
+                <h3>Functions and reusable logic</h3>
+                <p>
+                  Functions let you build small tools, calculate values, transform data, and keep large project declarations
+                  from becoming repetitive.
+                </p>
+              </div>
+              <div class="code-block">
+                <div class="code-title">functions.nova</div>
+                <pre><code class="language-javascript">function subtotal(items) {
+    let result = 0
+    for item in items {
+        result = result + item.price
+    }
+    return result
+}
+
+let cart = [{ price: 10 }, { price: 15 }]
+print(subtotal(cart))</code></pre>
+              </div>
+            </div>
+          </sl-tab-panel>
+
+          <sl-tab-panel name="classes">
+            <div class="split">
+              <div>
+                <h3>Classes and objects</h3>
+                <p>
+                  NovaDev supports classes, constructors, methods, and inheritance for projects that need structured domain
+                  logic before generation.
+                </p>
+              </div>
+              <div class="code-block">
+                <div class="code-title">classes.nova</div>
+                <pre><code class="language-javascript">class Cart {
+    function init(items) {
+        self.items = items
+    }
+
+    function count() {
+        return self.items.length
+    }
+}
+
+let cart = Cart(["phone", "case"])
+print(cart.count())</code></pre>
+              </div>
+            </div>
+          </sl-tab-panel>
+
+          <sl-tab-panel name="modules">
+            <div class="split">
+              <div>
+                <h3>Modules and Python bridge</h3>
+                <p>
+                  NovaDev projects can import other <code>.nova</code> files, use safe <code>Nova.*</code> helpers, and wrap
+                  Python modules for generated backends.
+                </p>
+              </div>
+              <div class="code-block">
+                <div class="code-title">modules.nova</div>
+                <pre><code class="language-javascript">use Nova.math
+
+function describe(number) {
+    let root = Nova.math.sqrt(number)
+    return "sqrt({number}) = {root}"
+}
+
+print(describe(16))</code></pre>
+              </div>
+            </div>
+          </sl-tab-panel>
+        </sl-tab-group>
+      </section>
+
+      <section class="section alt" id="shell">
+        <div class="split reverse">
+          <div class="code-block">
+            <div class="code-title">Interactive shell</div>
+            <pre><code class="language-bash">python shell.py
+
+NovaDev 1.1.0 Interactive Shell
+Type .exit to quit
+nova&gt; let name = "Aldane"
+nova&gt; print("Hello {name}")
+Hello Aldane
+nova&gt; .load examples/scripts/math_tool.nova
+nova&gt; .tokens examples/business_admin.nova
+nova&gt; .build-fullstack examples/apps/webshield</code></pre>
+          </div>
+          <div>
+            <p class="eyebrow">Shell</p>
+            <h2>Run code and project commands in one place.</h2>
+            <p>
+              The shell is not only for one-line expressions. It can run normal programming code, load files, inspect tokens,
+              inspect AST output, lint, format, generate docs, and build projects.
+            </p>
+            <ul class="pill-list">
+              <li>.load</li>
+              <li>.tokens</li>
+              <li>.ast</li>
+              <li>.lint</li>
+              <li>.format</li>
+              <li>.docs</li>
+              <li>.build-ui</li>
+              <li>.build-backend</li>
+              <li>.build-fullstack</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Learning Checklist</p>
+          <h2>What to learn before building full apps.</h2>
+        </div>
+        <div class="grid three">
+          <article class="feature-card"><strong>1. Run scripts</strong><p>Use <code>python nova.py run file.nova</code> to practice variables, functions, and loops.</p></article>
+          <article class="feature-card"><strong>2. Use modules</strong><p>Split code across files and import folders when a project gets larger.</p></article>
+          <article class="feature-card"><strong>3. Inspect the compiler</strong><p>Use tokens and AST commands to understand how source becomes runtime behavior.</p></article>
+          <article class="feature-card"><strong>4. Add project declarations</strong><p>Declare apps, tables, pages, routes, auth, themes, and workflows.</p></article>
+          <article class="feature-card"><strong>5. Generate output</strong><p>Build Vue/Tailwind frontend and Flask backend files from the declared structure.</p></article>
+          <article class="feature-card"><strong>6. Customize code</strong><p>Use Python modules, architecture files, custom frontend blocks, and custom backend logic.</p></article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div><h4>NovaDev</h4><p>Learn the language, then generate real project structure from your declarations.</p></div>
+      <div class="footer-links"><h4>Learn</h4><a href="learn.html">Language</a><a href="projects.html">Projects</a><a href="examples.html">Examples</a></div>
+      <div class="footer-links"><h4>Tools</h4><a href="packages.html">Package Manager</a><a href="reference.html#cli">CLI</a><a href="reference.html#shell">Shell</a></div>
+      <div class="footer-links"><h4>Build</h4><a href="packages.html#install">Install</a><a href="projects.html#modes">Modes</a><a href="reference.html">Reference</a></div>
+    </footer>
+
+    <script type="module" async src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/shoelace-autoloader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/common.min.js"></script>
+    <script src="assets/js/site.js"></script>
+  </body>
+</html>

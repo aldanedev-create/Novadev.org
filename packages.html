@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NovaDev Packages</title>
+    <meta name="description" content="Install NovaDev locally, use novapm, package .nova modules, configure registry JSON, and prepare website-hosted package downloads." />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/themes/light.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html"><span class="brand-mark">N</span><span>NovaDev</span></a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="learn.html">Learn</a>
+        <a href="projects.html">Projects</a>
+        <a href="packages.html">Packages</a>
+        <a href="examples.html">Examples</a>
+        <a href="reference.html">Reference</a>
+      </nav>
+      <a class="nav-cta" href="#install">Install</a>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <p class="eyebrow">Local Package Manager</p>
+        <h1>Install NovaDev and packages locally.</h1>
+        <p>
+          <code>novapm</code> gives NovaDev a Python-like installation path: install the language into a local home folder,
+          add launcher scripts to PATH, install packages, pack packages, and configure a registry hosted by a website.
+        </p>
+      </section>
+
+      <section class="section" id="install">
+        <div class="split">
+          <div>
+            <p class="eyebrow">Install</p>
+            <h2>Download the installer from the website.</h2>
+            <p>
+              The Vercel site serves a bootstrap installer, the NovaDev language zip, a registry JSON file, and package
+              zip files. The installer downloads the language, configures the registry, and can install every bundled
+              package in one command.
+            </p>
+            <div class="button-row">
+              <a class="button primary" href="downloads/install-novadev.py" download>Download Installer</a>
+              <a class="button secondary" href="#commands">View Commands</a>
+            </div>
+          </div>
+          <div class="code-block">
+            <div class="code-title">install commands</div>
+            <pre><code class="language-bash">python install-novadev.py \
+  --zip-url https://your-site.vercel.app/downloads/novadev.zip \
+  --install-all-packages
+
+# The installer infers:
+# https://your-site.vercel.app/downloads/registry.json
+
+nova shell
+nova run examples/hello.nova
+novapm doctor</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="section alt" id="commands">
+        <div class="section-heading">
+          <p class="eyebrow">Commands</p>
+          <h2>Everything a local package manager needs at the start.</h2>
+          <p>Click a command to copy it.</p>
+        </div>
+        <div class="command-grid">
+          <button class="command-copy" data-copy="python novapm.py doctor">doctor</button>
+          <button class="command-copy" data-copy="python novapm.py install-language --source .">install-language</button>
+          <button class="command-copy" data-copy="python novapm.py init-registry">init-registry</button>
+          <button class="command-copy" data-copy="python install-novadev.py --zip-url https://your-site.vercel.app/downloads/novadev.zip --install-all-packages">website install</button>
+          <button class="command-copy" data-copy="python novapm.py search ui">search</button>
+          <button class="command-copy" data-copy="python novapm.py install packages/hello-ui">install package</button>
+          <button class="command-copy" data-copy="python novapm.py list">list packages</button>
+          <button class="command-copy" data-copy="python novapm.py info hello-ui">package info</button>
+          <button class="command-copy" data-copy="python novapm.py remove hello-ui">remove package</button>
+          <button class="command-copy" data-copy="python novapm.py pack packages/hello-ui">pack package</button>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="grid two">
+          <div class="file-tree">
+            <div class="code-title">Vercel download layout</div>
+            <pre><code>downloads/
+  install-novadev.py
+  novadev.zip
+  registry.json
+  checksums.json
+  packages/
+    hello-ui.zip
+    auth-kit.zip
+    dashboard-kit.zip</code></pre>
+          </div>
+          <div class="file-tree">
+            <div class="code-title">User computer layout</div>
+            <pre><code>~/.novadev/
+  bin/
+    nova
+    nova-shell
+    novapm
+  language/
+    nova.py
+    shell.py
+    novapm.py
+    novadev/
+  packages/
+  cache/
+  registry.json
+  installed.json
+  config.json</code></pre>
+          </div>
+          <div class="code-block">
+            <div class="code-title">nova-package.json</div>
+            <pre><code class="language-json">{
+  "name": "hello-ui",
+  "version": "0.1.0",
+  "description": "Example NovaDev UI helpers",
+  "entry": "index.nova",
+  "kind": "module",
+  "files": ["index.nova"]
+}</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="section tint">
+        <div class="section-heading">
+          <p class="eyebrow">Website Registry</p>
+          <h2>How this becomes downloadable for other developers.</h2>
+        </div>
+        <div class="grid three">
+          <article class="feature-card"><span class="icon">1</span><strong>Host the site</strong><p>Deploy the static <code>nova website</code> folder to Vercel so users can download the installer and zips.</p></article>
+          <article class="feature-card"><span class="icon">2</span><strong>Install from zip</strong><p>The installer downloads <code>downloads/novadev.zip</code> and copies NovaDev into <code>~/.novadev/language</code>.</p></article>
+          <article class="feature-card"><span class="icon">3</span><strong>Use registry JSON</strong><p>The installer points <code>novapm</code> at <code>downloads/registry.json</code>, which points to package zip files.</p></article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div><h4>NovaDev</h4><p>Install the language, add packages, and grow toward a public ecosystem.</p></div>
+      <div class="footer-links"><h4>Learn</h4><a href="learn.html">Language</a><a href="projects.html">Projects</a><a href="examples.html">Examples</a></div>
+      <div class="footer-links"><h4>Tools</h4><a href="packages.html">Package Manager</a><a href="reference.html#cli">CLI</a><a href="reference.html#shell">Shell</a></div>
+      <div class="footer-links"><h4>Build</h4><a href="#install">Install</a><a href="reference.html#file-structure">File Structure</a><a href="projects.html#modes">Modes</a></div>
+    </footer>
+
+    <script type="module" async src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/shoelace-autoloader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/common.min.js"></script>
+    <script src="assets/js/site.js"></script>
+  </body>
+</html>

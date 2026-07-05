@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NovaDev Examples</title>
+    <meta name="description" content="Study NovaDev examples for ecommerce, construction, security, school, CRM, custom systems, and general-purpose scripting." />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/themes/light.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html"><span class="brand-mark">N</span><span>NovaDev</span></a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="learn.html">Learn</a>
+        <a href="projects.html">Projects</a>
+        <a href="packages.html">Packages</a>
+        <a href="examples.html">Examples</a>
+        <a href="reference.html">Reference</a>
+      </nav>
+      <a class="nav-cta" href="packages.html#install">Install</a>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <p class="eyebrow">Examples</p>
+        <h1>Build with NovaDev by studying real patterns.</h1>
+        <p>
+          These examples show the two sides of NovaDev: general-purpose programming and project compilation. Use them as
+          starting points for custom applications, not fixed templates.
+        </p>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Project Examples</p>
+          <h2>Apps NovaDev can describe and generate.</h2>
+        </div>
+        <div class="grid three">
+          <article class="example-card"><strong>Amazon-style store</strong><p>Ecommerce mode with products, catalog pages, checkout workflow, cart math, and Flask routes.</p></article>
+          <article class="example-card"><strong>Construction website</strong><p>Multi-file NovaDev app with services, projects, lead forms, estimate workflow, and Python modules.</p></article>
+          <article class="example-card"><strong>WebShield scanner</strong><p>Security dashboard with scans, risks, score tracking, generated API routes, and custom backend utilities.</p></article>
+          <article class="example-card"><strong>School dashboard</strong><p>Attendance workflows, student records, dashboard pages, and generated education-focused UI.</p></article>
+          <article class="example-card"><strong>CRM pipeline</strong><p>Deals, contacts, workflow actions, dashboard views, and mode-specific Tailwind styling.</p></article>
+          <article class="example-card" id="custom"><strong>Custom church system</strong><p>Custom mode with sermons, prayer requests, media pages, workflows, and no ecommerce assumptions.</p></article>
+        </div>
+      </section>
+
+      <section class="section alt">
+        <div class="split">
+          <div>
+            <p class="eyebrow">General Purpose</p>
+            <h2>Use code to generate better project declarations.</h2>
+            <p>
+              NovaDev is not only app syntax. You can write loops, functions, lists, and objects to produce starter
+              declarations, calculate values, or prepare configuration for a generated project.
+            </p>
+            <a class="button primary" href="learn.html">Learn Core Code</a>
+          </div>
+          <div class="code-block">
+            <div class="code-title">project_planner.nova</div>
+            <pre><code class="language-javascript">let projects = [
+    { name: "FreshCart", mode: "ecommerce", title: "FreshCart Store" },
+    { name: "BuildRight", mode: "construction", title: "BuildRight Projects" },
+    { name: "CareDesk", mode: "supportdesk", title: "CareDesk Tickets" }
+]
+
+function entityFor(mode) {
+    if mode == "ecommerce" {
+        return "Product"
+    } elif mode == "construction" {
+        return "Lead"
+    }
+    return "Ticket"
+}
+
+for project in projects {
+    print("app " + project.name + " {")
+    print("    mode " + project.mode)
+    print("    table " + entityFor(project.mode) + " { id auto name text }")
+    print("}")
+}</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Full-Stack Example</p>
+          <h2>Ecommerce store with ProjectIR-specific generation.</h2>
+          <p>
+            In ecommerce mode, checkout routes should appear only when the app declares checkout behavior. Catalog pages
+            should come from product declarations, not unrelated construction or CRM code.
+          </p>
+        </div>
+        <div class="code-block">
+          <div class="code-title">ecommerce-app.nova</div>
+          <pre><code class="language-javascript">app NovaMart {
+    project {
+        frontend Vue
+        backend Flask
+        database SQLite
+        structure VueFlask
+        styling Tailwind
+        mode ecommerce
+    }
+
+    table Product {
+        id auto
+        name text
+        description text
+        price money
+        stock int
+        imageUrl text
+    }
+
+    workflow Checkout {
+        input Cart
+        creates Order
+        calls cart_math.calculate_total
+    }
+
+    page Home {
+        type catalog
+        hero { title "NovaMart" subtitle "Shop technology essentials" }
+        section Products from Product
+    }
+}</code></pre>
+        </div>
+      </section>
+
+      <section class="section tint">
+        <div class="section-heading">
+          <p class="eyebrow">Commands</p>
+          <h2>Try the examples from the terminal.</h2>
+        </div>
+        <div class="command-grid">
+          <button class="command-copy" data-copy="python nova.py run examples/scripts/project_planner.nova">run project planner</button>
+          <button class="command-copy" data-copy="python nova.py build-fullstack examples/apps/ecommerce_1_1">build ecommerce</button>
+          <button class="command-copy" data-copy="python nova.py build-fullstack examples/apps/construction_1_1">build construction</button>
+          <button class="command-copy" data-copy="python nova.py build-fullstack examples/apps/security_1_1">build security</button>
+          <button class="command-copy" data-copy="python nova.py explain examples/apps/webshield">explain webshield</button>
+          <button class="command-copy" data-copy="python nova.py docs examples/apps/webshield">generate docs</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div><h4>NovaDev</h4><p>Examples show how custom code and app declarations work together.</p></div>
+      <div class="footer-links"><h4>Learn</h4><a href="learn.html">Language</a><a href="projects.html">Projects</a><a href="examples.html">Examples</a></div>
+      <div class="footer-links"><h4>Tools</h4><a href="packages.html">Package Manager</a><a href="reference.html#cli">CLI</a><a href="reference.html#shell">Shell</a></div>
+      <div class="footer-links"><h4>Build</h4><a href="packages.html#install">Install</a><a href="projects.html#modes">Modes</a><a href="reference.html">Reference</a></div>
+    </footer>
+
+    <script type="module" async src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/shoelace-autoloader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/common.min.js"></script>
+    <script src="assets/js/site.js"></script>
+  </body>
+</html>
