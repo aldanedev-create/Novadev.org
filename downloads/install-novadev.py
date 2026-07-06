@@ -244,6 +244,65 @@ def add_to_user_path(bin_dir: Path) -> str:
     return "updated"
 
 
+def associate_nova_files(home: Path) -> str:
+    """Register the .nova file extension with the NovaDev launcher on Windows."""
+
+    if os.name != "nt":
+        return "not-supported"
+
+    try:
+        import ctypes
+        import winreg
+
+        nova_cmd = home / "bin" / "nova.cmd"
+        icon_path = home / "language" / "assets" / "icons" / "novadev.ico"
+        if not icon_path.exists():
+            icon_path = home / "assets" / "novadev.ico"
+
+        if not nova_cmd.exists():
+            return "launcher-missing"
+
+        icon_value = f"{icon_path},0" if icon_path.exists() else f"{nova_cmd},0"
+        open_command = f'"{nova_cmd}" run "%1"'
+        edit_command = 'notepad.exe "%1"'
+
+        values = {
+            r".nova": "NovaDev.SourceFile",
+            r"NovaDev.SourceFile": "NovaDev Source File",
+            r"NovaDev.SourceFile\DefaultIcon": icon_value,
+            r"NovaDev.SourceFile\shell\open\command": open_command,
+            r"NovaDev.SourceFile\shell\edit\command": edit_command,
+        }
+
+        for subkey, value in values.items():
+            with winreg.CreateKey(winreg.HKEY_CURRENT_USER, rf"Software\Classes\{subkey}") as key:
+                winreg.SetValueEx(key, "", 0, winreg.REG_SZ, value)
+
+        # Tell Explorer to refresh file icons and extension associations.
+        shcne_assocchanged = 0x08000000
+        ctypes.windll.shell32.SHChangeNotify(shcne_assocchanged, 0, None, None)
+        return "updated"
+    except Exception as exc:  # noqa: BLE001 - installer should keep going.
+        return f"failed: {exc}"
+
+
+def install_vscode_extension(language_dir: Path) -> str:
+    """Install NovaDev's local VS Code language/icon extension when available."""
+
+    source = language_dir / "tools" / "vscode" / "novadev"
+    if not source.exists():
+        return "missing"
+
+    try:
+        target = Path.home() / ".vscode" / "extensions" / "novadev.novadev-language-1.1.0"
+        if target.exists():
+            shutil.rmtree(target)
+        shutil.copytree(source, target)
+        return "updated"
+    except Exception as exc:  # noqa: BLE001 - editor setup should not abort install.
+        return f"failed: {exc}"
+
+
 def install(
     source: str | None,
     zip_url: str | None,
@@ -252,6 +311,8 @@ def install(
     package_names: list[str],
     install_all_packages: bool,
     update_path: bool,
+    associate_files: bool,
+    install_editor_extension: bool,
 ) -> None:
     project_source, cleanup_dir = prepare_source(source, zip_url)
     language_dir = home / "language"
@@ -273,6 +334,8 @@ def install(
             shutil.rmtree(cleanup_dir)
 
     path_status = add_to_user_path(bin_dir) if update_path else "skipped"
+    association_status = associate_nova_files(home) if associate_files else "skipped"
+    vscode_status = install_vscode_extension(language_dir) if install_editor_extension else "skipped"
 
     print("NovaDev installed.")
     print(f"Home: {home}")
@@ -288,6 +351,22 @@ def install(
             print("PATH already contains the NovaDev bin folder.")
         elif path_status == "skipped":
             print("PATH update skipped.")
+        if association_status == "updated":
+            print(".nova files now use the NovaDev icon and open with nova run.")
+        elif association_status == "launcher-missing":
+            print(".nova file association skipped because nova.cmd was not found.")
+        elif association_status.startswith("failed:"):
+            print(f".nova file association skipped: {association_status}")
+        elif association_status == "skipped":
+            print(".nova file association skipped.")
+        if vscode_status == "updated":
+            print("VS Code NovaDev language/icon extension installed. Restart VS Code to see it.")
+        elif vscode_status == "missing":
+            print("VS Code extension skipped because tools/vscode/novadev was not found.")
+        elif vscode_status.startswith("failed:"):
+            print(f"VS Code extension install skipped: {vscode_status}")
+        elif vscode_status == "skipped":
+            print("VS Code extension install skipped.")
         print("For this current PowerShell window, run:")
         print(f'$env:Path = "{bin_dir};" + $env:Path')
     else:
@@ -310,6 +389,8 @@ def main() -> int:
     parser.add_argument("--install-package", action="append", default=[], help="Install one package after language install. Can be used more than once.")
     parser.add_argument("--install-all-packages", action="store_true", help="Install every package listed in the configured registry.")
     parser.add_argument("--no-path", action="store_true", help="Do not add NovaDev bin to the Windows user PATH.")
+    parser.add_argument("--no-file-association", action="store_true", help="Do not register .nova files with the NovaDev icon on Windows.")
+    parser.add_argument("--no-vscode-extension", action="store_true", help="Do not install the NovaDev VS Code language/icon extension.")
     parser.add_argument("--home", default=str(Path.home() / ".novadev"), help="Install location.")
     args = parser.parse_args()
 
@@ -321,6 +402,8 @@ def main() -> int:
         args.install_package,
         args.install_all_packages,
         not args.no_path,
+        not args.no_file_association,
+        not args.no_vscode_extension,
     )
     return 0
 
