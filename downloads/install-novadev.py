@@ -130,7 +130,6 @@ def write_launchers(home: Path) -> None:
     bin_dir = home / "bin"
     language_dir = home / "language"
     python_exe = sys.executable
-    pythonw_exe = Path(python_exe).with_name("pythonw.exe")
     bin_dir.mkdir(parents=True, exist_ok=True)
 
     launchers = {
@@ -144,20 +143,24 @@ def write_launchers(home: Path) -> None:
         if command == "novadev-manager" and os.name == "nt":
             cmd_text = (
                 f'@echo off\r\n'
-                f'setlocal\r\n'
+                f'setlocal EnableExtensions\r\n'
                 f'set "NOVADEV_HOME={home}"\r\n'
+                f'set "NOVADEV_MANAGER={script}"\r\n'
                 f'set "NOVADEV_LOG_DIR=%NOVADEV_HOME%\\logs"\r\n'
                 f'set "NOVADEV_LOG=%NOVADEV_LOG_DIR%\\manager.log"\r\n'
                 f'if not exist "%NOVADEV_LOG_DIR%" mkdir "%NOVADEV_LOG_DIR%" >nul 2>nul\r\n'
-                f'set "NOVADEV_GUI_PYTHON={python_exe}"\r\n'
-                f'if exist "{pythonw_exe}" set "NOVADEV_GUI_PYTHON={pythonw_exe}"\r\n'
-                f'echo ==== NovaDev Manager %DATE% %TIME% ====>> "%NOVADEV_LOG%"\r\n'
-                f'"%NOVADEV_GUI_PYTHON%" "{script}" %* >> "%NOVADEV_LOG%" 2>&1\r\n'
-                f'if errorlevel 1 (\r\n'
-                f'    echo NovaDev Manager could not start.>> "%NOVADEV_LOG%"\r\n'
-                f'    echo See: %NOVADEV_LOG%>> "%NOVADEV_LOG%"\r\n'
+                f'echo ==== NovaDev Manager %DATE% %TIME% ==== > "%NOVADEV_LOG%"\r\n'
+                f'echo Home: %NOVADEV_HOME% >> "%NOVADEV_LOG%"\r\n'
+                f'echo Manager: %NOVADEV_MANAGER% >> "%NOVADEV_LOG%"\r\n'
+                f'echo Python: {python_exe} >> "%NOVADEV_LOG%"\r\n'
+                f'if not exist "%NOVADEV_MANAGER%" (\r\n'
+                f'    echo Missing manager file: %NOVADEV_MANAGER% >> "%NOVADEV_LOG%"\r\n'
+                f'    exit /b 10\r\n'
                 f')\r\n'
-                f'exit /b %errorlevel%\r\n'
+                f'"{python_exe}" "%NOVADEV_MANAGER%" %* >> "%NOVADEV_LOG%" 2>&1\r\n'
+                f'set "EXIT_CODE=%errorlevel%"\r\n'
+                f'echo NovaDev Manager exited with %EXIT_CODE%. >> "%NOVADEV_LOG%"\r\n'
+                f'exit /b %EXIT_CODE%\r\n'
             )
         else:
             cmd_text = f'@echo off\r\nset "NOVADEV_HOME={home}"\r\n"{python_exe}" "{script}" %*\r\n'
@@ -173,8 +176,15 @@ def write_launchers(home: Path) -> None:
             'Set shell = CreateObject("WScript.Shell")\r\n'
             'Set filesystem = CreateObject("Scripting.FileSystemObject")\r\n'
             'scriptDir = filesystem.GetParentFolderName(WScript.ScriptFullName)\r\n'
+            'homeDir = filesystem.GetParentFolderName(scriptDir)\r\n'
+            'logPath = homeDir & "\\logs\\manager.log"\r\n'
             'managerCommand = """" & scriptDir & "\\novadev-manager.cmd" & """"\r\n'
-            'shell.Run managerCommand, 0, False\r\n',
+            'exitCode = shell.Run(managerCommand, 0, True)\r\n'
+            'If exitCode <> 0 Then\r\n'
+            '    MsgBox "NovaDev Manager could not start." & vbCrLf & vbCrLf & _\r\n'
+            '        "Details were written to:" & vbCrLf & logPath, _\r\n'
+            '        vbExclamation, "NovaDev Manager"\r\n'
+            'End If\r\n',
         )
 
 

@@ -20,6 +20,7 @@
         <a href="packages.html">Packages</a>
         <a href="examples.html">Examples</a>
         <a href="reference.html">Reference</a>
+        <a href="https://novadev-ide.vercel.app/" target="_blank" rel="noopener noreferrer">Novadev Ide⌨️</a>
       </nav>
       <a class="nav-cta" href="#install">Install</a>
     </header>
@@ -46,23 +47,94 @@
             </p>
             <div class="button-row">
               <a class="button primary" href="downloads/install-novadev.py" download>Download Installer</a>
+              <a class="button primary" href="downloads/NovaDevSetup.exe" download>Windows Setup install</a>
+              <a href="https://novadev-ide.vercel.app/" target="_blank" rel="noopener noreferrer">Novadev Ide⌨️</a>
               <a class="button secondary" href="#windows-installer">Windows Setup Guide</a>
               <a class="button secondary" href="#commands">View Commands</a>
             </div>
           </div>
           <div class="code-block">
-            <div class="code-title">install commands</div>
-            <pre><code class="language-bash">python install-novadev.py \
-  --zip-url https://novadev-org.vercel.app/downloads/novadev.zip \
-  --install-all-packages
+            <div class="code-block">
+            <div class="code-title">Install NovaDev (Windows)</div>
+<pre><code class="language-bash">
+# Step 1
+# Create a folder anywhere on your computer.
+# Example:
+# C:\Users\<YourUsername>\Downloads\NovaDev
 
-# The installer infers:
-# https://novadev-org.vercel.app/downloads/registry.json
+# Step 2
+# Download install-novadev.py from the NovaDev website.
+# It should appear in your Windows Downloads folder.
+
+# Step 3
+# Copy or move install-novadev.py into the folder you created.
+
+# Step 4
+# Open PowerShell inside that folder and run:
+
+python install-novadev.py --zip-url https://novadev-org.vercel.app/downloads/novadev.zip --install-all-packages
+
+
+# Expected output
+
+Installing package: hello-ui
+Installed hello-ui 0.1.0
+  C:\Users\<YourUsername>\.novadev\packages\hello-ui@0.1.0
+
+Installing package: auth-kit
+Installed auth-kit 0.1.0
+  C:\Users\<YourUsername>\.novadev\packages\auth-kit@0.1.0
+
+Installing package: dashboard-kit
+Installed dashboard-kit 0.1.0
+  C:\Users\<YourUsername>\.novadev\packages\dashboard-kit@0.1.0
+
+NovaDev installed successfully!
+
+Home:
+C:\Users\<YourUsername>\.novadev
+
+Language:
+C:\Users\<YourUsername>\.novadev\language
+
+Launchers:
+C:\Users\<YourUsername>\.novadev\bin
+
+Registry:
+https://novadev-org.vercel.app/downloads/registry.json
+
+
+# If the "nova" command is not recognized,
+# temporarily add NovaDev to your PATH:
+
+$env:Path = "$HOME\.novadev\bin;$env:Path"
+
+
+# Verify the installation
 
 nova shell
+
 nova run examples/hello.nova
-novapm doctor</code></pre>
-          </div>
+
+novapm doctor
+
+novapm search
+
+
+# Optional (Permanent PATH)
+
+# Add the following folder to your Windows User PATH:
+
+%USERPROFILE%\.novadev\bin
+
+
+# The installer automatically downloads:
+# https://novadev-org.vercel.app/downloads/novadev.zip
+
+# And automatically uses:
+# https://novadev-org.vercel.app/downloads/registry.json
+</code></pre>
+</div>
         </div>
       </section>
 
