@@ -6,7 +6,7 @@
     <title>NovaDev Language</title>
     <meta
       name="description"
-      content="NovaDev is a Python-powered programming language and project compiler for building scripts, packages, Vue frontends, Tailwind UIs, and Flask backends."
+      content="NovaDev is a Python-powered programming language and project compiler for standalone programs and Vue/Vite plus Express/Node applications."
     />
     <link rel="icon" href="assets/icons/novadev.ico" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/themes/light.css" />
@@ -25,9 +25,10 @@
           <a href="learn.html">Learn</a>
           <a href="projects.html">Projects</a>
           <a href="packages.html">Packages</a>
+          <a href="windows.html">Windows</a>
           <a href="examples.html">Examples</a>
           <a href="reference.html">Reference</a>
-          <a href="https://novadev-ide.vercel.app/" target="_blank" rel="noopener noreferrer">Novadev Ide⌨️</a>
+          <a href="https://novadev-ide.vercel.app/" target="_blank" rel="noopener noreferrer">Nova IDE</a>
         </nav>
         <a class="nav-cta" href="packages.html#install">Install</a>
       </header>
@@ -45,6 +46,7 @@
               </p>
               <div class="hero-actions">
                 <a class="button primary" href="learn.html">Start Learning</a>
+                <a class="button secondary" href="book.html">Read the Book</a>
                 <a class="button secondary" href="packages.html#install">Download Installer</a>
               </div>
               <div class="library-strip" aria-label="Website libraries">
@@ -96,7 +98,7 @@ Hello Aldane</code></pre>
             <article class="feature-card">
               <span class="icon">03</span>
               <strong>Full-stack compiler</strong>
-              <p>Declare apps, tables, pages, routes, auth, themes, workflows, architecture, Vue, Tailwind, and Flask.</p>
+              <p>Generate a Vue/Vite frontend and Express/Node backend from the same AST and ProjectIR.</p>
             </article>
             <article class="feature-card">
               <span class="icon">04</span>
@@ -136,13 +138,13 @@ Hello Aldane</code></pre>
             <h2>Learn it like Python: basics first, then projects.</h2>
           </div>
           <div class="grid three">
-            <a class="path-card" href="learn.html">
-              <strong>Language basics</strong>
-              <p>Start with values, variables, control flow, functions, classes, modules, and shell usage.</p>
+            <a class="path-card" href="https://novadev-ide.vercel.app/">
+              <strong>Developer curriculum</strong>
+              <p>Work through 44 lessons in six tracks with code challenges, checks, progress, and capstone requirements.</p>
             </a>
             <a class="path-card" href="projects.html">
               <strong>Build applications</strong>
-              <p>Learn app modes, custom mode, ProjectIR, workflows, UI generation, and Flask backends.</p>
+              <p>Learn app modes, custom mode, ProjectIR, workflows, UI generation, and Express/Node backends.</p>
             </a>
             <a class="path-card" href="examples.html">
               <strong>Study examples</strong>
@@ -160,12 +162,13 @@ Hello Aldane</code></pre>
   learn.html
   projects.html
   packages.html
+  windows.html
   examples.html
   reference.html
   assets/
     css/styles.css
     js/site.js
-    js/novadev-scene.js
+    js/novadev-scene-fixed.js
     novadev-hero.png
   downloads/
     install-novadev.py
@@ -214,13 +217,15 @@ Hello Aldane</code></pre>
           <a href="packages.html#install">Install</a>
           <a href="reference.html#file-structure">File Structure</a>
           <a href="projects.html#modes">Modes</a>
+          <div>Reserved by NovaDev 2026 </div>
+
         </div>
       </footer>
     </div>
 
     <script type="module" async src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/shoelace-autoloader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/common.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script src="assets/js/site.js"></script>
-    <script type="module" async src="assets/js/novadev-scene.js"></script>
+    <script type="module" src="assets/js/novadev-scene-fixed.js"></script>
   </body>
 </html>

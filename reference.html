@@ -18,9 +18,10 @@
         <a href="learn.html">Learn</a>
         <a href="projects.html">Projects</a>
         <a href="packages.html">Packages</a>
+        <a href="windows.html">Windows</a>
         <a href="examples.html">Examples</a>
         <a href="reference.html">Reference</a>
-        <a href="https://novadev-ide.vercel.app/" target="_blank" rel="noopener noreferrer">Novadev Ide⌨️</a>
+        <a href="https://novadev-ide.vercel.app/" target="_blank" rel="noopener noreferrer">Nova IDE</a>
       </nav>
       <a class="nav-cta" href="packages.html#install">Install</a>
     </header>
@@ -43,7 +44,8 @@
         <div class="grid two">
           <div class="code-block">
             <div class="code-title">nova.py commands</div>
-            <pre><code class="language-bash">python nova.py new my_app --frontend Vue --backend Flask --database SQLite
+            <pre><code class="language-bash">nova new my_app --frontend Vue --backend Express --database SQLite
+# Creates Downloads/Nova source code/my_app
 python nova.py run examples/scripts/math_tool.nova
 python nova.py shell
 python nova.py ir examples/apps/ecommerce_1_1
@@ -101,7 +103,7 @@ python novapm.py pack packages/hello-ui</code></pre>
           <article><span>2</span><div><h3>Parser</h3><p>Converts tokens into AST nodes for programs, expressions, statements, app declarations, pages, tables, routes, workflows, and modules.</p></div></article>
           <article><span>3</span><div><h3>Interpreter</h3><p>Walks the AST, evaluates expressions, stores variables in environments, runs functions, loops, conditions, classes, and print calls.</p></div></article>
           <article><span>4</span><div><h3>ProjectIR</h3><p>Collects app-level declarations into a structured intermediate representation used by project-specific generators.</p></div></article>
-          <article><span>5</span><div><h3>Generators</h3><p>Write Vue, Tailwind, Flask, models, routes, workflow hooks, custom files, and docs from the declared project structure.</p></div></article>
+          <article><span>5</span><div><h3>Generators</h3><p>Write Vue/Vite modules, Express routes, SQLite/Prisma models, workflows, tests, custom files, and docs.</p></div></article>
         </div>
       </section>
 
@@ -133,20 +135,22 @@ nova website/</code></pre>
             <div class="code-title">Generated full-stack project</div>
             <pre><code>generated/my-app/
   frontend/
-    src/
-      pages/
-      services/
-      style.css
-    package.json
+    index.html
+    app.js
+    components.js
+    project.js
+    style.css
   backend/
     app.py
+    wsgi.py
+    application/
+      api.py
+      web.py
     models.py
-    routes.py
-    workflows.py
-    modules/
     requirements.txt
   docs/
-    project.md</code></pre>
+    project-ir.json
+    compiler-report.md</code></pre>
           </div>
         </div>
       </section>
@@ -163,8 +167,8 @@ nova website/</code></pre>
           <sl-details summary="When should I use mode custom?">
             Use <code>mode custom</code> when the app does not fit a common category. NovaDev should generate only from the tables, pages, workflows, routes, modules, architecture, and custom code you declare.
           </sl-details>
-          <sl-details summary="Why Tailwind?">
-            Tailwind makes project-driven styling easier because the generator can compose utility classes from mode, theme, page type, and component role without sharing one global CSS look across every project.
+          <sl-details summary="How does Tailwind styling work with Vue/Vite?">
+            <code>styling Tailwind</code> gives the compiler utility-oriented design intent. Vue/Vite targets emit local project CSS instead of a development-only browser compiler. Use <code>frontend VueVite</code> for the Tailwind package and plugin workflow.
           </sl-details>
           <sl-details summary="How do Python modules work?">
             Nova-wrapped Python modules let developers add project-specific backend logic. Workflows and generated routes can call those helpers when the app declares them.
@@ -182,8 +186,8 @@ nova website/</code></pre>
     </footer>
 
     <script type="module" async src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/shoelace-autoloader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/common.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script src="assets/js/site.js"></script>
-    <script type="module" async src="assets/js/novadev-scene.js"></script>
+    <script type="module" src="assets/js/novadev-scene-fixed.js"></script>
   </body>
 </html>

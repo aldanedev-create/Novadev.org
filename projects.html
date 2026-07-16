@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NovaDev Project Compiler</title>
-    <meta name="description" content="Learn NovaDev ProjectIR, modes, custom mode, Vue generation, Tailwind styling, Flask backends, workflows, routes, and custom modules." />
+    <meta name="description" content="Learn NovaDev ProjectIR, modes, custom mode, Vue generation, Tailwind styling, Express/Node backends, workflows, routes, and custom modules." />
     <link rel="icon" href="assets/icons/novadev.ico" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/themes/light.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css" />
@@ -18,9 +18,10 @@
         <a href="learn.html">Learn</a>
         <a href="projects.html">Projects</a>
         <a href="packages.html">Packages</a>
+        <a href="windows.html">Windows</a>
         <a href="examples.html">Examples</a>
         <a href="reference.html">Reference</a>
-        <a href="https://novadev-ide.vercel.app/" target="_blank" rel="noopener noreferrer">Novadev Ide⌨️</a>
+        <a href="https://novadev-ide.vercel.app/" target="_blank" rel="noopener noreferrer">Nova IDE</a>
       </nav>
       <a class="nav-cta" href="packages.html#install">Install</a>
     </header>
@@ -30,8 +31,8 @@
         <p class="eyebrow">Project Compiler</p>
         <h1>Build apps from declared structure.</h1>
         <p>
-          NovaDev can compile high-level app declarations into ProjectIR, then generate project-specific Vue, Tailwind,
-          Flask, routes, models, workflow hooks, custom modules, and documentation.
+          NovaDev parses high-level app declarations into one canonical ProjectIR, then emits Vue/Vite frontends and
+          Express/Node backends with SQLite, workflows, auth, custom modules, tests, and documentation.
         </p>
       </section>
 
@@ -57,9 +58,9 @@
             <pre><code class="language-javascript">app StoreFront {
     project {
         frontend Vue
-        backend Flask
+        backend Express
         database SQLite
-        structure VueFlask
+        structure VueExpress
         styling Tailwind
         mode ecommerce
     }
@@ -107,13 +108,13 @@
         <div class="grid three">
           <article class="feature-card"><strong>Tables and models</strong><p>Declare entities, fields, types, IDs, and relationships for backend model generation.</p></article>
           <article class="feature-card"><strong>Pages and components</strong><p>Generate dashboard, catalog, form, table, landing, marketing, admin, and custom page layouts.</p></article>
-          <article class="feature-card"><strong>Routes and APIs</strong><p>Create Flask route files from declared HTTP routes and workflow endpoints.</p></article>
-          <article class="feature-card"><strong>Auth and roles</strong><p>Declare auth models, role requirements, and protected pages or routes.</p></article>
+          <article class="feature-card"><strong>Routes and APIs</strong><p>Create Express blueprints or Express routes from declared HTTP routes and workflow endpoints.</p></article>
+          <article class="feature-card"><strong>Auth and roles</strong><p>Generate SQLite-backed accounts, password hashing, expiring tokens, secure-field redaction, and server-side role policies.</p></article>
           <article class="feature-card"><strong>Workflows</strong><p>Describe actions like checkout, lead capture, prayer submission, booking, attendance, or scanning.</p></article>
           <article class="feature-card"><strong>Custom modules</strong><p>Wrap Python code in Nova modules so generated backends can call project-specific logic.</p></article>
           <article class="feature-card"><strong>Architecture files</strong><p>Declare folders and files like Dockerfile, utility modules, docs, and app-specific structure.</p></article>
-          <article class="feature-card"><strong>Tailwind styling</strong><p>Generate UI with mode-aware design profiles instead of the same shared CSS everywhere.</p></article>
-          <article class="feature-card"><strong>Vue + Flask output</strong><p>Generate frontend services, views, routes, backend models, API routes, and starter app files.</p></article>
+          <article class="feature-card"><strong>Project styling</strong><p>Generate local responsive CSS and mode-aware design tokens instead of a shared stylesheet copied across projects.</p></article>
+          <article class="feature-card"><strong>One verified web target</strong><p>Choose the supported Vue/Vite plus Express/Node target with Tailwind, SQLite/Prisma, workflows, auth, custom modules, tests, and generated docs.</p></article>
         </div>
       </section>
 
@@ -124,7 +125,7 @@
             <pre><code class="language-javascript">app ChurchMediaSystem {
     project {
         frontend Vue
-        backend Flask
+        backend Express
         styling Tailwind
         mode custom
     }
@@ -168,10 +169,12 @@
       <div class="footer-links"><h4>Learn</h4><a href="learn.html">Language</a><a href="projects.html">Projects</a><a href="examples.html">Examples</a></div>
       <div class="footer-links"><h4>Tools</h4><a href="packages.html">Package Manager</a><a href="reference.html#cli">CLI</a><a href="reference.html#shell">Shell</a></div>
       <div class="footer-links"><h4>Build</h4><a href="packages.html#install">Install</a><a href="reference.html#file-structure">File Structure</a><a href="reference.html">Reference</a></div>
+       <div>Reserved by NovaDev 2026 </div>
     </footer>
 
     <script type="module" async src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/shoelace-autoloader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/common.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script src="assets/js/site.js"></script>
+    <script type="module" src="assets/js/novadev-scene-fixed.js"></script>
   </body>
 </html>

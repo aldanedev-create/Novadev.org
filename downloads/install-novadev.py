@@ -3,8 +3,9 @@ from __future__ import annotations
 """Bootstrap installer for NovaDev.
 
 This file is meant to be downloaded from the NovaDev education website. It
-installs a local copy of the language into ~/.novadev and creates small command
-launchers so users can run nova, nova-shell, and novapm from their terminal.
+installs a local copy of the language into ~/.novadev and creates command
+launchers for NovaDev, the shell, package manager, desktop Manager, and
+uninstaller.
 """
 
 import argparse
@@ -137,6 +138,7 @@ def write_launchers(home: Path) -> None:
         "nova-shell": language_dir / "shell.py",
         "novapm": language_dir / "novapm.py",
         "novadev-manager": language_dir / "novadev_manager.py",
+        "uninstall-novadev": language_dir / "uninstall_novadev.py",
     }
 
     for command, script in launchers.items():
@@ -194,12 +196,27 @@ def infer_registry_url(zip_url: str | None) -> str | None:
     return urljoin(zip_url, "registry.json")
 
 
-def configure_registry(home: Path, registry_url: str | None) -> None:
-    if not registry_url:
-        return
+def downloads_directory() -> Path:
+    if os.name == "nt":
+        try:
+            import winreg
+
+            key_name = r"Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders"
+            with winreg.OpenKey(winreg.HKEY_CURRENT_USER, key_name) as key:
+                value, _ = winreg.QueryValueEx(key, "{374DE290-123F-4565-9164-39C4925E467B}")
+            return Path(os.path.expandvars(value)).expanduser().resolve()
+        except (FileNotFoundError, OSError):
+            pass
+    return (Path.home() / "Downloads").resolve()
+
+
+def configure_install(home: Path, registry_url: str | None, source_workspace: Path) -> None:
     home.mkdir(parents=True, exist_ok=True)
     config_path = home / "config.json"
-    config_path.write_text(json.dumps({"registry": registry_url}, indent=2) + "\n", encoding="utf-8")
+    config_path.write_text(
+        json.dumps({"registry": registry_url, "source_workspace": str(source_workspace)}, indent=2) + "\n",
+        encoding="utf-8",
+    )
 
 
 def read_registry(registry_url: str) -> dict:
@@ -356,12 +373,14 @@ def install(
     language_dir = home / "language"
     registry_url = registry_url or infer_registry_url(zip_url)
     bin_dir = home / "bin"
+    source_workspace = downloads_directory() / "Nova source code"
 
     try:
         home.mkdir(parents=True, exist_ok=True)
         copy_tree(project_source, language_dir)
         write_launchers(home)
-        configure_registry(home, registry_url)
+        source_workspace.mkdir(parents=True, exist_ok=True)
+        configure_install(home, registry_url, source_workspace)
         packages_to_install = package_names
         if install_all_packages and registry_url:
             packages_to_install = package_names_from_registry(registry_url)
@@ -379,6 +398,7 @@ def install(
     print(f"Home: {home}")
     print(f"Language: {language_dir}")
     print(f"Launchers: {bin_dir}")
+    print(f"Nova source workspace: {source_workspace}")
     if registry_url:
         print(f"Registry: {registry_url}")
     print()
@@ -413,8 +433,11 @@ def install(
     print()
     print("Try:")
     print("  nova shell")
+    print("  nova new MyProject")
     print("  nova run examples/hello.nova")
+    print("  novadev-manager")
     print("  novapm doctor")
+    print("  uninstall-novadev")
     if registry_url:
         print("  novapm search")
 

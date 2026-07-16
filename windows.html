@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NovaDev for Windows</title>
+    <meta name="description" content="Install, manage, repair, and uninstall NovaDev on Windows with NovaDevSetup.exe and NovaDev Manager." />
+    <link rel="icon" href="assets/icons/novadev.ico" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/themes/light.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html"><span class="brand-mark"><img src="assets/icons/novadev-logo.svg" alt="" /></span><span>NovaDev</span></a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="learn.html">Learn</a>
+        <a href="projects.html">Projects</a>
+        <a href="packages.html">Packages</a>
+        <a href="windows.html">Windows</a>
+        <a href="examples.html">Examples</a>
+        <a href="reference.html">Reference</a>
+        <a href="https://novadev-ide.vercel.app/" target="_blank" rel="noopener noreferrer">Nova IDE</a>
+      </nav>
+      <a class="nav-cta" href="downloads/NovaDevSetup.exe" download>Download</a>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <p class="eyebrow">Windows Installer and Desktop Manager</p>
+        <h1>NovaDev for Windows</h1>
+        <p>Install the language, terminal commands, package manager, file icon, VS Code support, desktop Manager, and a protected source workspace in one setup.</p>
+        <div class="button-row">
+          <a class="button primary" href="downloads/NovaDevSetup.exe" download>Download NovaDevSetup.exe</a>
+          <a class="button secondary" href="downloads/install-novadev.py" download>Portable Python installer</a>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Setup Flow</p>
+          <h2>Install once, then use NovaDev from a new terminal.</h2>
+        </div>
+        <div class="timeline">
+          <article><span>1</span><div><h3>Run setup</h3><p>Open <code>NovaDevSetup.exe</code>. It installs per-user under <code>%LOCALAPPDATA%\NovaDev</code> and does not require administrator privileges.</p></div></article>
+          <article><span>2</span><div><h3>Confirm Python</h3><p>The current installer uses an existing Python 3 installation with Tkinter. The launcher tests Python before opening Manager.</p></div></article>
+          <article><span>3</span><div><h3>Open a new PowerShell</h3><p>Setup adds <code>%LOCALAPPDATA%\NovaDev\bin</code> to the user PATH. Already-open terminals must be closed and reopened.</p></div></article>
+          <article><span>4</span><div><h3>Create source</h3><p><code>nova new MyProject</code> creates <code>Downloads\Nova source code\MyProject</code>, where Manager can find and manage it.</p></div></article>
+        </div>
+      </section>
+
+      <section class="section alt">
+        <div class="split">
+          <div>
+            <p class="eyebrow">Terminal Commands</p>
+            <h2>The repaired launchers use the detected Python executable.</h2>
+            <p><code>nova</code>, <code>nova-shell</code>, and <code>novapm</code> now use the same detection result as NovaDev Manager. Commands support paths containing spaces.</p>
+          </div>
+          <div class="code-block">
+            <div class="code-title">PowerShell</div>
+            <pre><code class="language-powershell">nova --version
+nova new SchoolPortal
+nova shell
+novapm doctor
+novadev-manager
+
+# Created project:
+# $HOME\Downloads\Nova source code\SchoolPortal</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="eyebrow">NovaDev Manager</p>
+          <h2>Manage projects and the installed runtime without typing every command.</h2>
+        </div>
+        <div class="grid four">
+          <article class="feature-card"><span class="icon">01</span><strong>Create projects</strong><p>Choose Vue, HTML, VueVite, Express, or Express and create the project in the Nova source workspace.</p></article>
+          <article class="feature-card"><span class="icon">02</span><strong>Find source</strong><p>Search projects and <code>.nova</code> files recursively, reveal them in Explorer, and open their location.</p></article>
+          <article class="feature-card"><span class="icon">03</span><strong>Run and build</strong><p>Run selected source, build UI files, or generate a full-stack project without freezing the Manager window.</p></article>
+          <article class="feature-card"><span class="icon">04</span><strong>Delete safely</strong><p>Delete a selected project or source file only after confirmation. Manager rejects deletion outside <code>Nova source code</code>.</p></article>
+        </div>
+      </section>
+
+      <section class="section tint">
+        <div class="split reverse">
+          <div class="file-tree">
+            <div class="code-title">Windows locations</div>
+            <pre><code>%LOCALAPPDATA%\NovaDev\
+  language\
+  bin\
+  packages\
+  logs\manager.log
+  unins000.exe
+
+%USERPROFILE%\Downloads\Nova source code\
+  MyProject\
+    app.nova
+    Nova.toml</code></pre>
+          </div>
+          <div>
+            <p class="eyebrow">Your Source Is Separate</p>
+            <h2>Updating or uninstalling NovaDev does not remove projects.</h2>
+            <p>The installed runtime lives under Local AppData. Developer-created source lives under Downloads. The uninstaller removes runtime files, launchers, packages, PATH registration, the VS Code extension, and the <code>.nova</code> association while preserving source.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="uninstall">
+        <div class="section-heading">
+          <p class="eyebrow">Uninstall</p>
+          <h2>Remove NovaDev through Manager or Windows Settings.</h2>
+        </div>
+        <div class="grid three">
+          <article class="feature-card"><strong>Manager</strong><p>Open the System tab, select <b>Uninstall NovaDev</b>, confirm, and allow the Inno uninstaller to finish.</p></article>
+          <article class="feature-card"><strong>Windows Settings</strong><p>Open Installed apps, locate NovaDev, and choose Uninstall. A Start Menu uninstall shortcut is also installed.</p></article>
+          <article class="feature-card"><strong>Portable install</strong><p>Run <code>uninstall-novadev</code>. The portable uninstaller removes <code>~/.novadev</code> integrations and keeps source projects.</p></article>
+        </div>
+      </section>
+
+      <section class="section alt" id="troubleshooting">
+        <div class="split">
+          <div>
+            <p class="eyebrow">Troubleshooting</p>
+            <h2>If Manager does not appear, inspect its launch log.</h2>
+            <p>Manager runs without a visible terminal. Startup details are written before Python launches, so missing Python, Tkinter, or Manager files produce a useful error instead of a disappearing PowerShell window.</p>
+          </div>
+          <div class="code-block">
+            <div class="code-title">Diagnostic locations</div>
+            <pre><code class="language-powershell">Get-Content "$env:LOCALAPPDATA\NovaDev\logs\manager.log"
+
+& "$env:LOCALAPPDATA\NovaDev\bin\novadev-manager.cmd"
+
+nova --version
+novapm doctor</code></pre>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div><h4>NovaDev</h4><p>Language, project compiler, package manager, IDE, and Windows desktop tools.</p></div>
+      <div class="footer-links"><h4>Learn</h4><a href="learn.html">Language</a><a href="https://novadev-ide.vercel.app/">IDE Curriculum</a><a href="examples.html">Examples</a></div>
+      <div class="footer-links"><h4>Build</h4><a href="projects.html">Project Compiler</a><a href="reference.html">Reference</a><a href="packages.html">Packages</a></div>
+      <div class="footer-links"><h4>Windows</h4><a href="downloads/NovaDevSetup.exe" download>Setup</a><a href="#uninstall">Uninstall</a><a href="#troubleshooting">Troubleshooting</a></div>
+    </footer>
+
+    <script type="module" async src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/shoelace-autoloader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="assets/js/site.js"></script>
+  </body>
+</html>

@@ -18,8 +18,10 @@
         <a href="learn.html">Learn</a>
         <a href="projects.html">Projects</a>
         <a href="packages.html">Packages</a>
+        <a href="windows.html">Windows</a>
         <a href="examples.html">Examples</a>
         <a href="reference.html">Reference</a>
+        <a href="https://novadev-ide.vercel.app/" target="_blank" rel="noopener noreferrer">Nova IDE</a>
       </nav>
       <a class="nav-cta" href="packages.html#install">Install</a>
     </header>
@@ -40,7 +42,7 @@
           <h2>Apps NovaDev can describe and generate.</h2>
         </div>
         <div class="grid three">
-          <article class="example-card"><strong>Amazon-style store</strong><p>Ecommerce mode with products, catalog pages, checkout workflow, cart math, and Flask routes.</p></article>
+          <article class="example-card"><strong>Amazon-style store</strong><p>Ecommerce mode with products, catalog pages, checkout workflow, cart math, and Express routes.</p></article>
           <article class="example-card"><strong>Construction website</strong><p>Multi-file NovaDev app with services, projects, lead forms, estimate workflow, and Python modules.</p></article>
           <article class="example-card"><strong>WebShield scanner</strong><p>Security dashboard with scans, risks, score tracking, generated API routes, and custom backend utilities.</p></article>
           <article class="example-card"><strong>School dashboard</strong><p>Attendance workflows, student records, dashboard pages, and generated education-focused UI.</p></article>
@@ -101,9 +103,9 @@ for project in projects {
           <pre><code class="language-javascript">app NovaMart {
     project {
         frontend Vue
-        backend Flask
+        backend Express
         database SQLite
-        structure VueFlask
+        structure VueExpress
         styling Tailwind
         mode ecommerce
     }
@@ -153,10 +155,15 @@ for project in projects {
       <div class="footer-links"><h4>Learn</h4><a href="learn.html">Language</a><a href="projects.html">Projects</a><a href="examples.html">Examples</a></div>
       <div class="footer-links"><h4>Tools</h4><a href="packages.html">Package Manager</a><a href="reference.html#cli">CLI</a><a href="reference.html#shell">Shell</a></div>
       <div class="footer-links"><h4>Build</h4><a href="packages.html#install">Install</a><a href="projects.html#modes">Modes</a><a href="reference.html">Reference</a></div>
+      <div>Reserved by NovaDev 2026 </div>
     </footer>
 
     <script type="module" async src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/shoelace-autoloader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/common.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script src="assets/js/site.js"></script>
+    <script type="module" src="assets/js/novadev-scene-fixed.js"></script>
+    
+    
+
   </body>
 </html>

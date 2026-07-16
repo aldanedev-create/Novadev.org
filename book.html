@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The NovaDev Book</title>
+    <meta name="description" content="The canonical NovaDev language and application book." />
+    <link rel="icon" href="assets/icons/novadev.ico" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/themes/light.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="brand" href="index.html" aria-label="NovaDev home"><span class="brand-mark"><img src="assets/icons/novadev-logo.svg" alt="" /></span><span>NovaDev</span></a>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="index.html">Home</a><a href="learn.html">Learn</a><a href="projects.html">Projects</a><a href="book.html" aria-current="page">Book</a><a href="packages.html">Packages</a><a href="windows.html">Windows</a><a href="examples.html">Examples</a><a href="reference.html">Reference</a><a href="https://novadev-ide.vercel.app/" target="_blank" rel="noopener noreferrer">Nova IDE</a>
+        </nav>
+        <a class="nav-cta" href="book-generated.html" data-winbox="book-generated.html">Read</a>
+      </header>
+
+      <main>
+        <section class="page-hero section">
+          <p class="eyebrow">Canonical learning source</p>
+          <h1>The NovaDev Book</h1>
+          <p class="lead">A standalone-language course that grows into verified Vue/Vite + Express/Node application work.</p>
+          <div class="hero-actions"><a class="button primary" href="book-generated.html" data-winbox="book-generated.html">Open the full book</a><a class="button secondary" href="downloads/NovaDev-Book-Aldane-Hutchinson.pdf">Download the PDF</a><a class="button secondary" href="learn.html#curriculum">Open the IDE curriculum</a></div>
+          <div class="callout"><strong>Editorial boundary:</strong> the book follows <a href="../docs/SOURCE_OF_TRUTH.md">the repository source of truth</a>. Old Flask, SQLAlchemy, Vue CDN, and static HTML paths are historical, not current lessons.</div>
+        </section>
+
+        <section class="section" id="chapters">
+          <div class="section-heading"><p class="eyebrow">24 chapters · 120 print pages</p><h2>Browse the course by page-sized windows.</h2><p>Each chapter is canonical Markdown under <code>docs/book/chapters</code>; this static page is a browsing index. Open a chapter preview beside another chapter with WinBox.js.</p></div>
+          <div class="command-grid book-grid">
+            <a class="command-card" href="book-generated.html#page-1" data-winbox="book-generated.html#page-1"><strong>01 · Orientation</strong><span>Source of truth, current stack, and the learner loop.</span></a>
+            <a class="command-card" href="book-generated.html#page-11" data-winbox="book-generated.html#page-11"><strong>03 · Values</strong><span>Variables, names, strings, and useful data contracts.</span></a>
+            <a class="command-card" href="book-generated.html#page-31" data-winbox="book-generated.html#page-31"><strong>07 · Control flow</strong><span>Conditions, loops, progress, and failure cases.</span></a>
+            <a class="command-card" href="book-generated.html#page-51" data-winbox="book-generated.html#page-51"><strong>11 · Modules</strong><span>Boundaries, imports, packages, and dependency direction.</span></a>
+            <a class="command-card" href="book-generated.html#page-71" data-winbox="book-generated.html#page-71"><strong>15 · Tables and Prisma</strong><span>Relations, SQLite, persistence, and generated models.</span></a>
+            <a class="command-card" href="book-generated.html#page-81" data-winbox="book-generated.html#page-81"><strong>17 · Workflows</strong><span>Business actions, validation order, and API contracts.</span></a>
+            <a class="command-card" href="book-generated.html#page-96" data-winbox="book-generated.html#page-96"><strong>20 · Automations</strong><span>Current job routes and the explicit scheduler boundary.</span></a>
+            <a class="command-card" href="book-generated.html#page-111" data-winbox="book-generated.html#page-111"><strong>23 · Testing</strong><span>Acceptance evidence, failure-oriented checks, and runbooks.</span></a>
+          </div>
+        </section>
+
+        <section class="section soft-section">
+          <div class="split"><div><p class="eyebrow">Going further</p><h2>Use the book as a shared spine.</h2><p>The IDE links lessons to the same chapter topics. The website does not copy a second curriculum. The source Markdown can be rebuilt into HTML or printed to PDF with the included builder.</p></div><div class="code-block"><div class="code-title">Build the book</div><pre><code>python docs/book/build_book.py \
+  --output "nova website/book-generated.html"</code></pre></div></div>
+        </section>
+      </main>
+      <footer class="site-footer"><div><strong>NovaDev</strong><span>Canonical docs, book, and curriculum.</span></div><div><a href="book-generated.html" data-winbox="book-generated.html">Open book</a><a href="reference.html">Reference</a></div></footer>
+    </div>
+    <script src="assets/js/site.js"></script>
+  </body>
+</html>
